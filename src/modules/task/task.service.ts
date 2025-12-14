@@ -57,7 +57,7 @@ export const taskService = {
       .collection("tasks")
       .findOne({ _id: taskId });
 
-    if (!oldTask) throw new Error("Task not found");
+    if (!oldTask) return({message: "Task not found"});
 
     await db.collection("tasks").updateOne(
       { _id: taskId },

@@ -13,7 +13,7 @@ export const authService = {
       ]
     });
 
-    if (exists) throw new Error("User already exists");
+    if (exists) return ({message: "User already exists"});
 
     const hashed = await bcrypt.hash(data.password, 10);
 
@@ -36,10 +36,10 @@ export const authService = {
       .collection("users")
       .findOne({ email: data.email });
 
-    if (!user) throw new Error("Invalid credentials");
+    if (!user) return ({message: "Invalid credentials"});
 
     const ok = await bcrypt.compare(data.password, user.password);
-    if (!ok) throw new Error("Invalid credentials");
+    if (!ok) return ({meaasge: "Invalid credentials"});
 
     
     const token = jwt.sign(
