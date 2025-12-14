@@ -18,7 +18,7 @@ export const login = async (req: any, res: any) => {
     secure: true,
     sameSite: "none",
   });
-  res.send({ user });
+  res.send(user );
 };
 
 export const profile = async (req: any, res: any) => {
