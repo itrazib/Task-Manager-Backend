@@ -4,6 +4,7 @@ import { MongoClient } from "mongodb";
 
 
 const client = new MongoClient(process.env.MONGO_URI!);
+console.log("ENV CHECK:", process.env.MONGO_URI);
 
 
 export const db = client.db("collaborative_task_manager");

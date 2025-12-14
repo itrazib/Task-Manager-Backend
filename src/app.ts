@@ -10,10 +10,7 @@ const app = express();
 
 app.use(
   cors({
-    origin: [
-      "http://localhost:5173",
-      "https://task-manager-backend-1-ijnn.onrender.com", 
-    ],
+    origin: `${process.env.FRONTEND_URL}`,
     credentials: true,
   })
 );

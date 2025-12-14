@@ -17,10 +17,10 @@ const login = async (req, res) => {
     const { token, user } = await auth_service_1.authService.login(req.body);
     res.cookie("token", token, {
         httpOnly: true,
-        secure: true, // 🔥 Render + Vercel
-        sameSite: "none", // 🔥 Cross-site cookie
+        secure: true,
+        sameSite: "none",
     });
-    res.json(user);
+    res.send({ user });
 };
 exports.login = login;
 const profile = async (req, res) => {

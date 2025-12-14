@@ -15,11 +15,10 @@ export const login = async (req: any, res: any) => {
 
   res.cookie("token", token, {
     httpOnly: true,
-    secure: true, // 🔥 Render + Vercel
-    sameSite: "none", // 🔥 Cross-site cookie
+    secure: true,
+    sameSite: "none",
   });
-
-  res.json(user);
+  res.send({ user });
 };
 
 export const profile = async (req: any, res: any) => {
