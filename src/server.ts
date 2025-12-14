@@ -1,12 +1,9 @@
 // src/server.
 import http from "http";
-
-
-
-
 import app from "./app";
 import { connectDB } from "./config/db";
 import { initSocket } from "./socket";
+// import { initSocket } from "./server";
 
 const PORT = process.env.PORT || 5000;
 
