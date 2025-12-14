@@ -1,7 +1,6 @@
 import { authService } from "./auth.service";
 import { db } from "../../config/db";
 
-
 export const register = async (req: any, res: any) => {
   try {
     const result = await authService.register(req.body);
@@ -11,28 +10,21 @@ export const register = async (req: any, res: any) => {
   }
 };
 
-
 export const login = async (req: any, res: any) => {
-  try {
-    const { token, user } = await authService.login(req.body);
+  const { token, user } = await authService.login(req.body);
 
-    res
-      .cookie("token", token, {
-        httpOnly: true,
-        secure: true,      // Render + Vercel
-        sameSite: "none",  // cross-origin cookie
-      })
-      .json(user);
-  } catch (err: any) {
-    res.status(401).json({ message: err.message });
-  }
+  res.cookie("token", token, {
+    httpOnly: true,
+    secure: true, // 🔥 Render + Vercel
+    sameSite: "none", // 🔥 Cross-site cookie
+  });
+
+  res.json(user);
 };
-
 
 export const profile = async (req: any, res: any) => {
   res.json(req.user);
 };
-
 
 export const getUsers = async (req: any, res: any) => {
   const users = await db

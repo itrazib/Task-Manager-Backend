@@ -14,19 +14,13 @@ const register = async (req, res) => {
 };
 exports.register = register;
 const login = async (req, res) => {
-    try {
-        const { token, user } = await auth_service_1.authService.login(req.body);
-        res
-            .cookie("token", token, {
-            httpOnly: true,
-            secure: true, // Render + Vercel
-            sameSite: "none", // cross-origin cookie
-        })
-            .json(user);
-    }
-    catch (err) {
-        res.status(401).json({ message: err.message });
-    }
+    const { token, user } = await auth_service_1.authService.login(req.body);
+    res.cookie("token", token, {
+        httpOnly: true,
+        secure: true, // 🔥 Render + Vercel
+        sameSite: "none", // 🔥 Cross-site cookie
+    });
+    res.json(user);
 };
 exports.login = login;
 const profile = async (req, res) => {
